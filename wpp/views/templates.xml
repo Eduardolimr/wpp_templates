@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wpp_template" model="mail.template">
+        <field name="name">WhatsApp Message Template</field>
+        <field name="subject">Message</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+             <p style="margin: 0px; padding: 0px; font-size: 13px;">
+             <div>
+                Hello
+             </div>
+        ]]>
+        </field>
+    </record>
+    
+</odoo>

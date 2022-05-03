@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022, TODAY Escodoo
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record model="ir.ui.view" id="wpp_button">
+        <field name="name">base_wpp_contact</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="arch" type="xml">
+            <!-- TODO CHANGE POSITION // FIX XPATH -->
+            <xpath expr="//field[@name='mobile']" position="after">
+                <button icon="fa-whatsapp" style="color:#25D366;border:none" help="Send WhatsApp Message" name="wpp_parse_message" type="object" attrs="{'invisible': [('mobile', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    add action to action button in sales-->
+    <record id="action_whatsapp_message" model="ir.actions.server">
+        <field name="name">Whatsapp Message</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_sms()</field>
+    </record>
+</odoo>
