@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>   
+    <record model="ir.ui.view" id="wpp_sale_form">
+        <field name="name">wpp_sale_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_cancel']" position="after">
+                <button name="sale_wpp" type="object" class="oe_highlight" string="Send Sale Whatsapp Message"
+                        icon="fa-whatsapp"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='action_cancel']" position="after">
+                <button name="send_direct_message" type="object" class="oe_highlight" string="Direct Whatsapp Message"
+                        icon="fa-whatsapp" groups="wpp.group_send_sms"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    add action to action button in sales-->
+    <record id="action_wpp_message" model="ir.actions.server">
+        <field name="name">Whatsapp Message</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.multi_sms()</field>
+    </record>
+</odoo>
